@@ -119,7 +119,7 @@ export function ContactSection() {
                     <p className="text-muted-foreground">
                       Pazartesi - Cumartesi: 08:00 - 18:00
                       <br />
-                      Pazar: Acil durumlar için arayın
+                      Pazar: Acil durumlar için arayınız
                     </p>
                   </div>
                 </div>
