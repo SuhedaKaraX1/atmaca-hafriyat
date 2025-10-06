@@ -26,7 +26,7 @@ export function AboutSection() {
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4 text-balance">Hakkımızda</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-            Yılların deneyimi ve güvenilir hizmet anlayışımızla sektörde öncü konumdayız
+            Yılların deneyimi ve güvenilir hizmet anlayışımızla Ağrı'da hafriyat firmaları arasında öncü konumdayız
           </p>
         </div>
 

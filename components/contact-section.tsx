@@ -16,13 +16,31 @@ export function ContactSection() {
     phone: "",
     message: "",
   })
+  const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
+  const [error, setError] = useState("")
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Form submission logic will be implemented later
-    console.log("Form submitted:", formData)
-    alert("Mesajınız alındı! En kısa sürede size dönüş yapacağız.")
-    setFormData({ name: "", email: "", phone: "", message: "" })
+    setLoading(true)
+    setError("")
+    setSuccess(false)
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
+      if (res.ok) {
+        setSuccess(true)
+        setFormData({ name: "", email: "", phone: "", message: "" })
+      } else {
+        setError("Bir hata oluştu. Lütfen tekrar deneyin.")
+      }
+    } catch {
+      setError("Bir hata oluştu. Lütfen tekrar deneyin.")
+    }
+    setLoading(false)
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -168,9 +186,20 @@ export function ContactSection() {
                   type="submit"
                   className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
                   size="lg"
+                  disabled={loading}
                 >
-                  Teklif Talep Et
+                  {loading ? "Gönderiliyor..." : "Teklif Talep Et"}
                 </Button>
+                {success && (
+                  <p className="text-green-600 mt-2 text-center">
+                    Talebiniz başarıyla gönderildi!
+                  </p>
+                )}
+                {error && (
+                  <p className="text-red-600 mt-2 text-center">
+                    {error}
+                  </p>
+                )}
               </form>
             </CardContent>
           </Card>
