@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Star, StarIcon, X } from "lucide-react"
 
 type Review = {
-  id: number
+  _id: string
   name: string
   rating: number
   comment: string
@@ -142,7 +142,7 @@ export function ReviewsSection() {
         {/* En yüksek puanlı ilk 3 yorum */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-8">
           {topReviews.map((review) => (
-            <Card key={review.id} className="border-border relative">
+            <Card key={review._id} className="border-border relative">
               <CardContent className="pt-6">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="font-semibold">{review.name}</h3>
@@ -197,7 +197,7 @@ export function ReviewsSection() {
             ) : (
               <div className="grid gap-6">
                 {otherReviews.map((review) => (
-                  <Card key={review.id} className="border-border">
+                  <Card key={review._id} className="border-border">
                     <CardContent className="pt-6">
                       <div className="flex items-center justify-between mb-4">
                         <h3 className="font-semibold">{review.name}</h3>

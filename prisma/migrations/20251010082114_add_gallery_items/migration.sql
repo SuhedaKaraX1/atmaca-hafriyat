@@ -1,8 +1,0 @@
--- CreateTable
-CREATE TABLE "GalleryItem" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "type" TEXT NOT NULL,
-    "src" TEXT NOT NULL,
-    "alt" TEXT NOT NULL,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
-);

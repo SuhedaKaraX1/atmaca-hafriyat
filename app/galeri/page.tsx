@@ -14,20 +14,26 @@ type GalleryItem = {
 
 export default function GalleryPage() {
   const [activeVideo, setActiveVideo] = useState<string | null>(null)
+  const [activeOverlay, setActiveOverlay] = useState<number | null>(null) // overlay state
 
-  // Manuel olarak eklenen galeriler
   const galleryItems: GalleryItem[] = [
     { id: 1, type: "image", src: "/uploads/resim1.jpg", alt: "Eleşkirt GES projesi boru hattı" },
     { id: 2, type: "image", src: "/uploads/resim2.jpg", alt: "Eleşkirt GES projesi boru hattı" },
     { id: 3, type: "image", src: "/uploads/resim3.jpg", alt: "Eleşkirt GES projesi boru hattı" },
     { id: 4, type: "image", src: "/uploads/resim4.jpg", alt: "Taş Takimatı Çalışması" },
-    { id: 4, type: "image", src: "/uploads/resim5.jpg", alt: "Arazi Düzenleme Çalışması" },
-    // istediğin kadar ekleyebilirsin
+    { id: 5, type: "image", src: "/uploads/resim5.jpg", alt: "Arazi Düzenleme Çalışması" },
   ]
+
+  const handleOverlayToggle = (id: number, type: "image" | "video") => {
+    if (type === "video") {
+      setActiveVideo(galleryItems.find((item) => item.id === id)?.src || null)
+    } else {
+      setActiveOverlay(activeOverlay === id ? null : id)
+    }
+  }
 
   return (
     <div className="container mx-auto px-4 py-20">
-      {/* Başlık */}
       <div className="flex items-center gap-4 mb-12">
         <Link href="/" className="text-primary hover:text-primary/90">←</Link>
         <h1 className="text-2xl font-bold text-primary">
@@ -35,13 +41,12 @@ export default function GalleryPage() {
         </h1>
       </div>
 
-      {/* Galeri Grid */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {galleryItems.map((item) => (
           <Card
             key={item.id}
             className="relative overflow-hidden h-64 cursor-pointer group"
-            onClick={() => item.type === "video" && setActiveVideo(item.src)}
+            onClick={() => handleOverlayToggle(item.id, item.type)}
           >
             <div className="absolute inset-0 w-full h-full">
               {item.type === "image" ? (
@@ -58,7 +63,16 @@ export default function GalleryPage() {
                   preload="metadata"
                 />
               )}
-              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white p-4 text-center">
+
+              {/* Overlay */}
+              <div
+                className={`
+                  absolute inset-0 bg-black/40 flex items-center justify-center text-white p-4 text-center
+                  opacity-0 transition-opacity duration-300
+                  group-hover:opacity-100
+                  ${activeOverlay === item.id ? "opacity-100" : ""}
+                `}
+              >
                 <p className="font-medium">{item.alt}</p>
               </div>
             </div>
@@ -66,7 +80,6 @@ export default function GalleryPage() {
         ))}
       </div>
 
-      {/* Video Modal */}
       {activeVideo && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
           <div className="relative w-11/12 md:w-3/4 lg:w-2/3">

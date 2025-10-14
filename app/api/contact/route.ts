@@ -1,20 +1,16 @@
-import { PrismaClient } from "@/lib/generated/prisma"
-
-const prisma = new PrismaClient()
+import { connectMongo } from "@/lib/mongodb"
+import Contact from "@/lib/models/Contact"
+const nodemailer = (await import("nodemailer")).default
 
 export async function POST(req: Request) {
+  await connectMongo()
   const data = await req.json()
-  const contact = await prisma.contact.create({
-    data: {
-      name: data.name,
-      email: data.email,
-      phone: data.phone,
-      message: data.message,
-    },
+  const contact = await Contact.create({
+    name: data.name,
+    email: data.email,
+    phone: data.phone,
+    message: data.message,
   })
-
-  // Dinamik import ile nodemailer
-  const nodemailer = (await import("nodemailer")).default
 
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST || "smtp.gmail.com",
