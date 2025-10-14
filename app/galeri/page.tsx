@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Card } from "@/components/ui/card"
 import { X } from "lucide-react"
 import Link from "next/link"
@@ -13,24 +13,23 @@ type GalleryItem = {
 }
 
 export default function GalleryPage() {
-  const [items, setItems] = useState<GalleryItem[]>([])
   const [activeVideo, setActiveVideo] = useState<string | null>(null)
 
-  useEffect(() => {
-    fetch("/api/galeri")
-      .then((res) => res.json())
-      .then((data) => setItems(data))
-  }, [])
+  // Manuel olarak eklenen galeriler
+  const galleryItems: GalleryItem[] = [
+    { id: 1, type: "image", src: "/uploads/resim1.jpg", alt: "Eleşkirt GES projesi boru hattı" },
+    { id: 2, type: "image", src: "/uploads/resim2.jpg", alt: "Eleşkirt GES projesi boru hattı" },
+    { id: 3, type: "image", src: "/uploads/resim3.jpg", alt: "Eleşkirt GES projesi boru hattı" },
+    { id: 4, type: "image", src: "/uploads/resim4.jpg", alt: "Taş Takimatı Çalışması" },
+    { id: 4, type: "image", src: "/uploads/resim5.jpg", alt: "Arazi Düzenleme Çalışması" },
+    // istediğin kadar ekleyebilirsin
+  ]
 
   return (
     <div className="container mx-auto px-4 py-20">
+      {/* Başlık */}
       <div className="flex items-center gap-4 mb-12">
-        <Link 
-          href="/"
-          className="text-primary hover:text-primary/90"
-        >
-          ← 
-        </Link>
+        <Link href="/" className="text-primary hover:text-primary/90">←</Link>
         <h1 className="text-2xl font-bold text-primary">
           Tamamladığımız ve Devam Ettiğimiz Diğer Projelerimiz
         </h1>
@@ -38,13 +37,11 @@ export default function GalleryPage() {
 
       {/* Galeri Grid */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {items.map((item) => (
+        {galleryItems.map((item) => (
           <Card
             key={item.id}
             className="relative overflow-hidden h-64 cursor-pointer group"
-            onClick={() => {
-              if (item.type === "video") setActiveVideo(item.src)
-            }}
+            onClick={() => item.type === "video" && setActiveVideo(item.src)}
           >
             <div className="absolute inset-0 w-full h-full">
               {item.type === "image" ? (
