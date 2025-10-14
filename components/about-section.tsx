@@ -33,15 +33,17 @@ export function AboutSection() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <h3 className="text-2xl font-semibold text-foreground mb-4">Güvenilir Çözüm Ortağınız</h3>
-            <p className="text-muted-foreground leading-relaxed">
-              Atmaca Hafriyat olarak, inşaat ve hafriyat sektöründe uzun yılların getirdiği deneyim ve bilgi
-              birikimimizle müşterilerimize en kaliteli hizmeti sunmaktayız. Modern ekipmanlarımız ve uzman kadromuzla
-              her türlü projeye çözüm üretiyoruz.
+            <p className="text-muted-foreground leading-relaxed" style={{ textAlign: "justify" }}>
+              Atmaca Hafriyat, Ağrı’da faaliyet gösteren köklü bir hafriyat firması olarak, inşaat ve hafriyat sektöründe uzun yılların getirdiği deneyim ve bilgi 
+              birikimimizle müşterilerimize en kaliteli hizmeti sunmaktayız. Modern ekipmanlarımız ve uzman kadromuzla, Ağrı’daki hafriyatçılar arasında fark yaratıyor, 
+              her türlü projeye profesyonel çözümler üretiyoruz.
             </p>
-            <p className="text-muted-foreground leading-relaxed">
-              Müşteri memnuniyetini ön planda tutarak, zamanında ve kaliteli iş teslimi konusunda sektörde fark
-              yaratıyoruz. Güvenilir iş ortaklığı için doğru adrestesiniz.
+
+            <p className="text-muted-foreground leading-relaxed" style={{ textAlign: "justify" }}>
+              Müşteri memnuniyetini ön planda tutarak, Ağrı hafriyat şirketleri arasında güvenilirliği ve zamanında iş teslimini ilke edindik.
+              Kaliteli, güvenilir ve profesyonel hizmet anlayışımızla bölgenin en çok tercih edilen Ağrı hafriyat firmalarından biri olmanın gururunu yaşıyoruz.
             </p>
+
 
             <div className="space-y-3">
               <div className="flex items-center gap-3">
