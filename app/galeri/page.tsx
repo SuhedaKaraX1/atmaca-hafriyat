@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Card } from "@/components/ui/card"
 import { X } from "lucide-react"
 import Link from "next/link"
@@ -14,14 +14,31 @@ type GalleryItem = {
 
 export default function GalleryPage() {
   const [activeVideo, setActiveVideo] = useState<string | null>(null)
-  const [activeOverlay, setActiveOverlay] = useState<number | null>(null) // overlay state
+  const [activeOverlay, setActiveOverlay] = useState<number | null>(null)
+
+  // Modal açıkken body scroll'u engelle
+  useEffect(() => {
+    if (activeVideo) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+    return () => {
+      document.body.style.overflow = ""
+    }
+  }, [activeVideo])
 
   const galleryItems: GalleryItem[] = [
-    { id: 1, type: "image", src: "/uploads/resim1.jpg", alt: "Eleşkirt GES projesi boru hattı" },
-    { id: 2, type: "image", src: "/uploads/resim2.jpg", alt: "Eleşkirt GES projesi boru hattı" },
-    { id: 3, type: "image", src: "/uploads/resim3.jpg", alt: "Eleşkirt GES projesi boru hattı" },
+    { id: 1, type: "image", src: "/uploads/resim1.jpg", alt: "Eleşkirt GES Projesi Boru Hattı" },
+    { id: 2, type: "image", src: "/uploads/resim2.jpg", alt: "Eleşkirt GES Projesi Boru Hattı" },
+    { id: 3, type: "image", src: "/uploads/resim3.jpg", alt: "Eleşkirt GES Projesi Boru Hattı" },
     { id: 4, type: "image", src: "/uploads/resim4.jpg", alt: "Taş Takimatı Çalışması" },
     { id: 5, type: "image", src: "/uploads/resim5.jpg", alt: "Arazi Düzenleme Çalışması" },
+    { id: 6, type: "image", src: "/uploads/resim6.jpg", alt: "Tkdk Desdekşi Akıllı Ahır" },
+    { id: 7, type: "image", src: "/uploads/resim7.jpg", alt: "Ağrı Tanışırlar İnşaat 36 Dairelik İnşaat Temeli" },
+    { id: 8, type: "image", src: "/uploads/resim8.jpg", alt: "Ağrı İşçe 24 Dairelik İnşaatın Yıkım ve Temel İşi" },
+    { id: 9, type: "image", src: "/uploads/resim9.jpg", alt: "Dere İslahı ve Takimat" },
+    { id: 10, type: "video", src: "/uploads/video1.mp4", alt: "Dolgu Çalışması" },
   ]
 
   const handleOverlayToggle = (id: number, type: "image" | "video") => {
@@ -80,12 +97,13 @@ export default function GalleryPage() {
         ))}
       </div>
 
+      {/* Video Modal - GallerySection ile aynı mantık */}
       {activeVideo && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50">
           <div className="relative w-11/12 md:w-3/4 lg:w-2/3">
             <button
               onClick={() => setActiveVideo(null)}
-              className="absolute -top-10 right-0 text-white text-3xl"
+              className="absolute -top-10 right-0 text-white text-3xl font-bold"
             >
               <X className="h-8 w-8" />
             </button>
@@ -93,7 +111,8 @@ export default function GalleryPage() {
               src={activeVideo}
               controls
               autoPlay
-              className="w-full rounded-lg"
+              playsInline
+              className="w-full max-h-[80vh] rounded-lg bg-black"
             />
           </div>
         </div>

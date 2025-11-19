@@ -13,8 +13,8 @@ export default function HomePage() {
       <Navigation />
       <HeroSection />
       <AboutSection />
-      <ServicesSection />
       <GallerySection />
+      <ServicesSection />
       <ContactSection />
       <ReviewsSection />
       <Footer />

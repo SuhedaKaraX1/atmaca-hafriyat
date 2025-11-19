@@ -49,20 +49,21 @@ export function Footer() {
                   Hakkımızda
                 </button>
               </li>
+              
+              <li>
+                <button
+                  onClick={() => document.getElementById("galeri")?.scrollIntoView({ behavior: "smooth" })}
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Projelerimiz
+                </button>
+              </li>
               <li>
                 <button
                   onClick={() => document.getElementById("hizmetlerimiz")?.scrollIntoView({ behavior: "smooth" })}
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   Hizmetlerimiz
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => document.getElementById("galeri")?.scrollIntoView({ behavior: "smooth" })}
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Galeri
                 </button>
               </li>
               <li>

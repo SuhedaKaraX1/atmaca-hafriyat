@@ -42,8 +42,8 @@ export function Navigation() {
               {[
                 { id: "anasayfa", label: "Ana Sayfa" },
                 { id: "hakkimizda", label: "Hakkımızda" },
+                { id: "galeri", label: "Projelerimiz" },
                 { id: "hizmetlerimiz", label: "Hizmetlerimiz" },
-                { id: "galeri", label: "Galeri" },
                 { id: "iletisim", label: "İletişim" },
               ].map((item) => (
                 <button
@@ -73,8 +73,8 @@ export function Navigation() {
               {[
                 { id: "anasayfa", label: "Ana Sayfa" },
                 { id: "hakkimizda", label: "Hakkımızda" },
+                { id: "galeri", label: "Projelerimiz" },
                 { id: "hizmetlerimiz", label: "Hizmetlerimiz" },
-                { id: "galeri", label: "Galeri" },
                 { id: "iletisim", label: "İletişim" },
               ].map((item) => (
                 <button

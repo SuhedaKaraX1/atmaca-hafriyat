@@ -50,9 +50,9 @@ export function HeroSection() {
             variant="outline"
             size="lg"
             className="border-white text-white hover:bg-white hover:text-primary px-8 py-3 text-lg bg-transparent"
-            onClick={() => document.getElementById("hizmetlerimiz")?.scrollIntoView({ behavior: "smooth" })}
+            onClick={() => document.getElementById("galeri")?.scrollIntoView({ behavior: "smooth" })}
           >
-            Hizmetlerimizi İnceleyin
+            Projelerimizi İnceleyin
           </Button>
         </div>
       </div>
